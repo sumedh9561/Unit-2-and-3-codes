@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doc</title>
+</head>
+<body>
+    <form onsubmit="submitProduct(event)" id="Product">
+        <input type="text" id="name" placeholder="product Name">
+        <input type="text" id="category" placeholder="category">
+        <input type="text" id="imgie" placeholder="imagie">
+        <input type="text" id="price" placeholder="price">
+        <select id="gender">
+            <option value="Select">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            
+        </select>
+        <select id="sold">
+            <option value="Select">Select</option>
+            <option value="True">True</option>
+            <option value="False">False</option>
+        </select>
+        <input type="submit">
+        <!-- <link rel="stylesheet" href="main.js"> -->
+    </form>
+</body>
+</html>
+<script>
+{
+    // let arr = JSON.parse(localStorage.getItem("Products")) || []
+    let obj = {} // 
+    
+    // function Product(name , brand , price){
+        function Products(n,c,i,p,g,s){
+        this.name = n;
+        this.category = c;
+        this.imgie = i;
+        // this.gender = gender;
+        this.price = p;
+        this.gender = g;
+        this.sold = s;
+    }
+    //  let arr = [];
+    //   let arr = JSON.parse(localStorage.getItem("Products")) || []
+           let arr = [];
+    function submitProduct(e){
+        e.preventDefault();
+        let form =document.getElementById("Product")
+        let name = form.name.value;
+        let category = form.category.value;
+        let imgie = form.imgie.value;
+        let price = form.price.value;
+        let gender = form.gender.value;
+        let sold = form.sold.value;
+ 
+         let a = new Products(name,category,imgie,price,gender,sold)
+         arr.push(a)
+         console.log(arr)
+      
+          localStorage.setItem("Products", JSON.stringify(arr))
+
+    }
+
+      }
+
+
+</script>
