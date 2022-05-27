@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+        }
+        #container>div{
+            text-align: center;
+            border-radius:25px;
+        }
+
+    </style>
+</head>
+<body>
+    <input type="text" placeholder="search movie" id="movie">
+    <button onclick="getdata()" type="submit" id="submit">search</button>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+function getdata(){
+    let movie=document.getElementById("movie").value;
+
+    const url=`https://api.themoviedb.org/3/search/movie?api_key=247f5fa9d84f1687cb841ded0a341993&language=en-US&page=1&include_adult=false&query=${movie}`
+
+    fetch(url)
+    .then(function(res){
+        return res.json()
+    })
+    .then(function(res){
+        console.log('res',res.results)
+        appendData(res.results)
+    })
+    .catch(function(err){
+        console.log('err',err)
+    })
+
+}
+
+function appendData(data){
+    data.forEach(function(el){
+       
+        
+
+        let div=document.createElement("div")
+
+        let image=document.createElement('img')
+        image.src=`https://image.tmdb.org/t/p/w220_and_h330_face${el.poster_path}`
+        
+        let title=document.createElement("h3")
+        title.innerText=el.title;
+
+        let release=document.createElement('p')
+        release.innerText=el.release_date;
+
+        div.append(image,title,release)
+        document.querySelector('#container').append(div)
+
+    })
+}
+
+</script>
