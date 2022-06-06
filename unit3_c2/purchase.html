@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchases</title>
+  </head>
+  <style>
+    #navbar {
+      background-color:teal;
+      overflow: hidden;
+    }
+    #navbar h2 {
+      color: rgb(194, 49, 49);
+      text-align: center;
+      padding: 18px 25px;
+      font-size:20px;
+      
+    }
+    #navbar a  {
+      text-decoration: none;
+      color: white;
+      text-align: center;
+      padding: 18px 25px;
+      font-size:20px;
+      float: left;
+    }
+    #wallet_balance{
+      color: white;
+      float: right;
+    }
+    #purchase {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 20px;
+      grid-auto-rows: minmax(100px, auto);
+      column-gap: 40px;
+      width: 100%;
+
+    }
+    #purchase div{
+      border: 1px solid;
+      width: 400px;
+      margin-bottom: 30px;
+      margin-top: 30px;
+
+
+    }
+  #purchase div{
+    text-align: center;
+  }
+  body{
+        background-color: brown;
+      }
+
+  </style>
+  <body>
+    <div id="navbar">
+      <h2>Purchase</h2>
+      <h3 id="wallet_balance"></h3>
+      </div>
+    <div id="purchase"></div>
+    <!-- Wallet balence id:- "wallet_balance" (only number). -->
+    <!-- - All the purchased voucher will be appended in div with id as "purchased_vouchers".
+  - The remaining balance will show on the page inside h3 tag with id as "balance" -->
+  </body>
+</html>
+<script src="./scripts/purchase.js"></script>
