@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>showRecipes</title>
+
+     <link rel="stylesheet" href="./components/navbar.css">
+</head>
+<style>
+    #searchResult{
+        margin-top: 20px;
+        height: 700px;
+        width: 500px;
+       margin: auto;
+       cursor: pointer; 
+      box-shadow: rgba(42, 183, 219, 0.459) 0px 54px 55px, rgba(47, 171, 224, 0.404) 0px -12px 30px, rgba(82, 194, 202, 0.349) 0px 4px 6px;
+    
+    }
+    #searchResult>div>img{
+        height: 70%;
+        width: 97%;
+        margin: auto;
+    }
+    h1{
+        color: rgb(186, 97, 33);
+        padding-left: 10px;
+    }
+body{
+    background-color: brown;
+}
+</style>
+<body>
+    <div id="container"></div>
+ 
+   <div id="searchResult">
+
+   </div>
+    <!-- <a href="./components/navbar.js"></a> -->
+</body>
+</html>
+<script type="module">
+    import navabar from './components/navbar.js'
+    let container=document.getElementById('container')
+    container.innerHTML=navabar();
+
+    let data=JSON.parse(localStorage.getItem('mealdata'))||[];
+    layout(data)
+    
+    function layout(data){
+        let maindiv=document.getElementById("searchResult")
+        let div=document.createElement("div");
+        let title=document.createElement("h1");
+        let image=document.createElement("img");
+
+
+        image.src=data.strMealThumb;
+        title.innerText=data.strMeal;
+        div.append(image,title)
+        maindiv.append(div);
+    }
+</script>

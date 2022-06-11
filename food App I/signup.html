@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./components/navbar.css">
+    <title>Document</title>
+    <style>
+        form{
+            display: grid;
+            row-gap: 10px;
+            width:40%;
+            height: 40px;
+            margin-left: 30%;
+            
+        }
+        input{
+            height: 20px;
+            background-color: antiquewhite;
+        }
+   #submit{
+       width: 10%;
+       margin-left: 45%;
+       background-color: skyblue;
+
+   }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <a href="./components/navbar.js"></a>
+    <form >
+      <input type="text" id="name" placeholder="Name">
+      <input type="email" id="email" placeholder="Email">
+      <input type="text" id="password" placeholder="Password">
+      <input type="text" id="username" placeholder="User">
+      <input type="number" id="mobile" placeholder="Mobile">
+      <input type="text" id="description" placeholder="Description">
+      <button id="submit">Sign Up</button>
+      
+</form>
+
+</body>
+</html>
+<script type="module">
+
+import navabar from './components/navbar.js'
+    let container=document.getElementById('container')
+    container.innerHTML=navabar();
+
+    let register = async (e) => {
+    e.preventDefault();
+
+    let form_data = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value,
+      username: document.getElementById("username").value,
+      mobile: document.getElementById("mobile").value,
+      description: document.getElementById("description").value,
+    };
+
+    form_data = JSON.stringify(form_data);
+
+    let res = await fetch(
+      "https://masai-api-mocker.herokuapp.com/auth/register",
+      {
+        method: "POST",
+        body: form_data,
+        
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    let data = await res.json();
+    console.log(data);
+  };
+
+  document.getElementById("submit").addEventListener("click", register);
+</script>

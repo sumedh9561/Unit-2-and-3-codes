@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>latestReceipe</title>
+     <link rel="stylesheet" href="./components/navbar.css">
+     <link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <div class="displayData"></div>
+   
+    <a href="./components/navbar.js"></a>
+
+</body>
+</html>
+
+<script type="module">
+   
+    import navabar from './components/navbar.js'
+    let container=document.getElementById('container')
+    container.innerHTML=navabar();
+
+    
+    import {getData,showData} from "./script/dataShow.js"
+    
+
+    let showDataDiv = document.querySelector(".displayData");
+
+    let response =await  getData(`https://www.themealdb.com/api/json/v1/1/categories.php`);
+    
+    
+    try{
+
+        console.log(response);
+        showData(response.categories , showDataDiv);
+         
+
+    }
+    catch(err){
+        console.log("Error : ",err);
+    }
+
+
+</script>

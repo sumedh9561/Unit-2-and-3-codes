@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./components/navbar.css">
+    <title>Document</title>
+    <style>
+        #submit{
+            border: 1px solid rgb(9, 2, 2);
+            width: 5%;
+            height: 1%;
+            margin-left: 8%;
+            margin-top: 10px;
+            border-radius: 10px;
+            margin-left: 45%;
+            background-color: skyblue;
+        }
+        input{
+            display: grid;
+            row-gap: 50px;
+            height: 30px;
+            width: 25%;
+            margin-left: 35%;
+            background-color: antiquewhite;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar"></div>
+    <a href="./components/navbar.js"></a>
+    <input type="text" id="username" placeholder="user">
+    <input type="password" id="password" placeholder="password">
+    <div id="submit"><a href="index.html">Login</a></div>
+</body>
+</html>
+<script type="module">
+
+import navabar from './components/navbar.js'
+    let container=document.getElementById('navbar')
+    container.innerHTML=navabar();
+
+    let login = async () => {
+    let user_data = {
+      username: document.getElementById("username").value,
+      password: document.getElementById("password").value,
+    };
+     
+    user_data = JSON.stringify(user_data);
+
+    let res = await fetch("https://masai-api-mocker.herokuapp.com/auth/login", {
+      method: "POST",
+      body: user_data,
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    let data = await res.json();
+
+    let username = document.getElementById('username').value;
+    getUserDetail(username, data.token);
+    console.log(data);
+  };
+
+  document.getElementById("submit").addEventListener("click", login);
+
+  let getUserDetail = async (username, token) => {
+      console.log("here");
+    let res = await fetch(
+      `https://masai-api-mocker.herokuapp.com/user/${username}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    let data = await res.json();
+    console.log("user data: ", data);
+  };
+</script>

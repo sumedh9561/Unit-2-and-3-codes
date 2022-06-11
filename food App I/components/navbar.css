@@ -1,0 +1,69 @@
+div{
+    padding: 10px;
+    font-weight: bold;
+ }
+ .navbar,#navbar{
+     height: 60px;
+     width: auto;
+    
+     display: flex;
+     background-color: goldenrod;
+     font-size: 20px;
+     cursor: pointer;
+     border-radius: 10px;
+    
+    }
+    
+    .navbar>div,#navbar{
+       height: 100%;
+       
+       align-content: center;
+      
+ }
+ #home{
+    width: 20%;
+ 
+ }
+ #SearchBar{
+    width: 90%;
+    height: 97%;
+    
+    
+   }
+ 
+ #LatestRecipes{
+    width: 20%;
+    
+ }
+ #Recipes_of_Day{
+    width: 20%;
+ 
+ }
+ #login{
+    width: 20%;
+ 
+ }
+ #signup{
+    width: 20%;
+ 
+ }
+ #SearchRecepie{
+    width: 70%;
+    font-size: 20px;
+    height: 60%;
+    border-radius: 10px;
+    padding-left: 20px;
+    background-color: tan;
+ 
+   
+ }
+ a{
+    text-decoration: none;
+    /* color: rgb(0, 0, 0); */
+    padding: 6px;
+    font-size: 20px;
+    color: black;
+     
+ }
+  
+ 

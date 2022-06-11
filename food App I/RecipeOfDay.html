@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecipeOfDay</title>
+     <link rel="stylesheet" href="./components/navbar.css">
+</head>
+<style>
+    #recimain{
+        height: 60%;
+        width: 98%;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        display: flex;
+         overflow-y: auto;
+        }
+    #recimain>div{
+        height: 500px;
+        width: 80%;
+        padding-left: 40px;
+       
+      }
+    img{
+        height: 400px;
+        width: 400px;
+    }
+    p{
+        font-weight: normal;
+    }
+    h1{
+        color: rgb(226, 137, 47);
+    }
+</style>
+<body>
+    <div id="container"></div>
+    <div id="recimain">
+
+    </div>
+   
+    <a href="./components/navbar.js"></a>
+</body>
+</html>
+<script type="module">
+    import navabar from './components/navbar.js'
+    let container=document.getElementById('container')
+    container.innerHTML=navabar()
+    
+    var random=document.getElementById('Recipes_of_Day');
+
+    random.querySelector('click',getdata())
+
+    async function getdata()
+    {
+        try{
+            let response=await fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+
+            let data = await response.json();
+
+            console.log(data)
+
+            displayData(data.meals)
+        }
+        catch(error){
+            console.log("Error",error)
+        }
+    }
+
+    function displayData(data)
+    {
+        data.map(({strMealThumb,strCategory,strMeal,strIngredient1,strIngredient2,strIngredient3,strInstructions})=>
+        {
+            var display=document.getElementById("recimain")
+
+            let main=document.createElement("div");
+
+            let imge=document.createElement("img");
+            imge.setAttribute("src",strMealThumb)
+
+            let h01=document.createElement("h1");
+            h01.innerText=strCategory;
+
+            let h02=document.createElement("h2");
+            h02.innerText=strMeal;
+
+            let line1=document.createElement("h3");
+            line1.innerText=strIngredient1;
+
+            let line2=document.createElement("h3");
+            line2.innerText=strIngredient2;
+
+            let line3=document.createElement("h3");
+            line3.innerText=strIngredient3;
+
+            let p1=document.createElement("p");
+            p1.innerText=strInstructions;
+
+            main.append(h01,h02,line1,line2,line3,p1)
+
+            display.append(imge,main)
+        })
+    }
+   
+</script>

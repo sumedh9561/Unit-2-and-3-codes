@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index.html</title>
+    
+     <link rel="stylesheet" href="./components/navbar.css">
+     <link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+    <div id="container"></div>
+    <div id="SearchResult"></div>
+    <div class="displayData"></div>
+   
+    <a href="./components/navbar.js"></a>
+
+</body>
+</html>
+<script type="module">
+   
+    import navabar from './components/navbar.js'
+    let container=document.getElementById('container')
+    container.innerHTML=navabar();
+
+   
+    import {getData,showData} from "./script/dataShow.js"
+   
+
+    let showDataDiv = document.querySelector(".displayData");
+    let response =await  getData(`https://www.themealdb.com/api/json/v1/1/categories.php`);
+
+    let Search_result=document.getElementById('SearchResult');
+
+    let input=document.getElementById("SearchRecepie");
+
+    input.addEventListener("mouseover", ()=>
+    {
+    SearchResult.style.display="block";
+    })
+    showDataDiv.addEventListener("mouseout", ()=>
+    {
+    Search_result.style.display="none"; 
+    })
+ 
+    input.addEventListener("input",search_recipe)
+     
+    async function search_recipe()
+    {
+        try{ 
+            let input=document.getElementById("SearchRecepie").value;
+
+            let response=await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${input}`);
+
+            var data=await response.json();
+
+            show_search(data.meals);
+            
+            console.log(data.meals);
+              
+        }
+        catch(erro){
+            console.log("error",erro);
+
+        }
+    }
+    
+    function show_search(data)
+    {
+        data.map(({strMealThumb,strMeal,})=>
+        {
+         let div=document.createElement("div")
+
+         let image=document.createElement("img");
+
+         let categ=document.createElement("h3");
+         
+
+         let mealObj =
+         {
+             strMealThumb,
+             strMeal
+         }
+         div.addEventListener("click", ()=>
+         {
+            selectData(mealObj);
+         });
+
+         image.src=strMealThumb;
+
+         categ.innerText=strMeal;
+
+         div.append(image,categ)
+
+         Search_result.append(div);
+        });
+    }
+    function selectData(data)
+    {
+        localStorage.setItem("mealdata",JSON.stringify(data));
+        window.location.href="./ShowRecipes.html";
+    }
+
+
+    try{
+
+        console.log(response);
+        showData(response.categories , showDataDiv);
+         
+
+    }
+    catch(err){
+        console.log("Error : ",err);
+    }
+
+
+</script>
