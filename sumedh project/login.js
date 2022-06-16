@@ -18,11 +18,5 @@ function login(){
         window.location.href="index.html"
     }
     else alert("try agian")
-
-
-
-  
-
-
 }
   

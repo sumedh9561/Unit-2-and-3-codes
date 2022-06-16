@@ -8,7 +8,7 @@ var userArr=JSON.parse(localStorage.getItem("userDatas")) || [];
 
         var data={
             usermobile:mobile,
-            userotp:sam3.otp.value,
+            // userotp:sam3.otp.value,
             email:sam3.email.value,
             password:sam3.password.value,
         }    

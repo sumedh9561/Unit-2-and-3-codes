@@ -6,33 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #sam21{
-            border: 1px solid red;
-            /* background-image: url(https://images.bewakoof.com/web/group-19-1617704502.png);
-            background-repeat: no-repeat; */
-            height: 600px;
-            width: 700px;
+         #sam21{
+             border: 1px solid white; 
+            /* background-color: antiquewhite; */
+
+              background-image: url(https://images.bewakoof.com/web/group-19-1617704502.png);
+            background-repeat: no-repeat; 
+             height: 650px;
+            width: 1375px;
             
+        } 
+         #sam22{
+            display: grid;
+            row-gap: 5px;
+            /* justify-items: center; */
+            margin-top: 110px;
+            margin-left: 800px;
+        
         }
+        #sam,input{
+            height: 35px;
+            width: 450px;
+            text-align: center;
+            background-color:aliceblue;
+         }
+         #submit{
+            background-color: darkcyan;
+            border: none;
+            border-radius: 4px;
+            color: whitesmoke;
+         } 
+         #sam22>h1{
+            font-family: sans-serif;
+            margin-left: 190px;
+         }
+         #sam22>p{
+            margin-left: 190px;
+         }
+         #sam24{
+            /* border: 1px solid red; */
+            background-color: beige;
+         }
+         
     </style>
 </head>
 <body>
+    <div id="sam24">
+
       <div id="sam21">
+        
+        
         <div id="sam22">
-            <input type="email " placeholder="enter email" id="email" value="">
+            <h1>Log In</h1>
+            <input type="text " placeholder="Enter OTP" id="otp" >
+            <input type="email " placeholder="Enter Email" id="email" value="">
             
-            <input type="text " placeholder="enter password" id="password" value="">
+            <input type="text " placeholder="Enter Password" id="password" value="">
             
             <p ><a href="forgot.html">Forgot Password?</a></p>
             <input type="submit" value="Login" id="submit" > 
-
-
         </div>
+    </div>
+</div>
 
-
-      </div>
-    
+      
 </body>
 </html>
 
-<script src="login.js" ></script>
+ <script src="login.js" ></script> 
