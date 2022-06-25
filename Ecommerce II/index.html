@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce II</title>
+    <style>
+        .top{
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20px;
+        }
+        #counter{
+            font-size: 18px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto;
+            gap: 20px;
+            margin: 20px;
+            margin-top: 50px;
+        }
+
+        .product {
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .product p {
+            margin:8px;
+        }
+
+        .product img {
+            width: 100%;
+        }
+
+        .name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .btndiv {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .btndiv>button {
+            background-color: white;
+            border: none;
+            border: 1px solid;
+            border-radius: 3px;
+            padding: 10px;
+            width: 45%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top">
+        <div>
+            <a href="admin.html">Go to admin page</a>
+        </div>
+        <div id="counter">
+
+        </div>
+    </div>
+   
+    <div class="container">
+
+    </div>
+</body>
+
+</html>
+<script>
+    var productData = JSON.parse(localStorage.getItem("Products"));
+    // console.log(productData);
+    var length = productData.length;
+    document.getElementById("counter").textContent = `Total Number of Products are ${length}`;
+
+    productData.map(function (el,index) {
+        var box = document.createElement("div");
+        box.setAttribute("class", "product");
+
+        var img = document.createElement("img");
+        img.src = el.imageUrl;
+
+        var name = document.createElement("p");
+        name.setAttribute("class", "name")
+        name.textContent = el.name;
+
+        var category = document.createElement("p");
+        category.textContent = `Category: ${el.category}`;
+
+        var price = document.createElement("p");
+        price.textContent = `Price: $${el.price}`;
+        price.style.fontWeight = "bold"
+
+        var btndiv = document.createElement("div");
+        btndiv.setAttribute("class", "btndiv");
+
+        var removebtn = document.createElement("button");
+        removebtn.setAttribute("id", "remove");
+        removebtn.textContent = "Remove";
+        removebtn.addEventListener("click", function () {
+            removeItem(el,index);
+        })
+
+        var soldbtn = document.createElement("button");
+        soldbtn.setAttribute("id", "sold");
+        soldbtn.textContent = "Sold";
+        soldbtn.addEventListener("click", function () {
+            changeSoldValue(el);
+        })
+        if(el.sold == "true"){
+            soldbtn.style.backgroundColor = "red";
+        }else if(el.sold == "false"){
+            soldbtn.style.backgroundColor = "green";
+        }
+
+        btndiv.append(removebtn, soldbtn);
+
+        box.append(img, name, category, price, btndiv);
+
+        document.querySelector(".container").append(box);
+    });
+
+    var btn = document.getElementById("sold");
+    console.log(btn.value)
+
+    function removeItem(el, index) {
+        // console.log(el);
+       
+        productData.splice(index, 1);
+        localStorage.setItem("Products", JSON.stringify(productData));
+        window.location.reload();
+    }
+    function changeSoldValue(el, index) {
+        // console.log(el);
+        if (el.sold == "false") {
+            el.sold = "true";
+        } else if (el.sold == "true") {
+            el.sold = "false";
+        }
+        localStorage.setItem("Products", JSON.stringify(productData));
+        window.location.reload();
+    }
+
+</script>
