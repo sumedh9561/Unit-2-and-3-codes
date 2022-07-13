@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Style>
+       
+        #container{
+            /* width:100%;
+            height: 600px;
+            /* background-image: url(https://woxapp.com/uploads/images/zomato_4.jpg);   */
+            /* background-image: url(https://i.ytimg.com/vi/HefuL9X3SCg/maxresdefault.jpg);
+            background-repeat: no-repeat;
+             border-radius: 5px;
+              */ 
+              background-image: url("https://woxapp.com/uploads/images/zomato_4.jpg"); /* The image used */
+              background-color: #cccccc; /* Used if the image is unavailable */
+               height: 500px; /* You must set a specified height */
+              background-position: center; /* Center the image */
+             background-repeat: no-repeat; /* Do not repeat the image */
+             background-size: cover; 
+
+             
+        }
+        #nav{
+            height: 40px;
+            width: 80%;
+            margin: auto;
+            display: flex;
+
+            justify-content: flex-end;
+            align-items: center;
+            border-radius: 3px;
+            margin-bottom: 80px;
+        }
+        #nav>div{
+            margin-right: 30px;
+            font-family: 'Noto Sans', sans-serif;
+        }
+        a{
+            text-decoration: none;
+            font-size: bolder;
+            color: white;
+        }
+        #foodbox{
+            display: flex;
+            width: 230px;
+            border-radius: 8px;
+        }
+        #items{
+            height: 50px;
+            width: 230px;
+            border-radius: 8px;
+        }
+        #items>option{
+            color: gray;
+            font-size: 15px;
+            
+        }
+        button{
+            height: 50px;
+            width: 320px;
+            border-radius: 10px;
+            border: none;
+            color: grey;
+            font-size: 15px;
+            
+        }
+        h1{
+            font-size: 50px;
+            text-align: center;
+            color: gold;
+            font-family: 'Square peg', cursive;
+            margin-bottom: 6px;
+        }
+    
+        
+        #box{
+            border-radius: 10px;
+            background-color: aqua;
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            /* align-items: center; */
+            gap: 10px;
+            margin-top: 30px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        #ordered-image{
+            width: 200px;
+            height: 200px;
+            border-radius: 5px;
+        }
+         #order_p{
+             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: black;
+            font-size: 25px;
+        } 
+      
+    </Style>
+</head>
+<body>
+    <div id="container">  
+        <div id="nav">   
+     <div><a href="index.html">Home</a></div>
+     <div><a href="login.html">login</a></div>
+     <div><a href="signup.html">signup</a></div>
+    </div>
+
+    <h1>The Second Wife Restor</h1>
+
+    <div id="foodbox">
+        <select id="items">
+            <option value="Chooose your Refreshment" id="phs">Choose your Refreshment</option>
+            <option value="vada pao">Vada pao</option>
+            <option value="paneer tikka">Paneer tikka</option>
+            <option value="shawarma">shawarma</option>
+            <option value="veg thupka">Veg thupka</option>
+            <option value="spring roll">Spring roll</option>
+            <option value="litti chokha">Litti chokha</option>
+            <option value="fried momos">Fried momos</option>
+            <option value="hakka noodles">Hakka noodles</option>
+            <option value="chicken kosha">Chicken kosha</option>
+            <option value="veg kabaab">Veg kabaab</option>
+        </select>
+          <button onclick="orderFood()">Order Food</button> 
+    </div>
+</div> 
+    <div id="output"></div> 
+</body>
+</html>
+<script src="index.js"></script>

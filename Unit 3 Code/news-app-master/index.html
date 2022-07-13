@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News App</title>
+  </head>
+
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+
+    #navbar{
+      display: flex;
+      justify-content: space-around;
+      border: 1px solid blue;
+    }
+    #search_input{
+      width: 70%;
+      border-radius: 30px;
+      padding: 20px;
+    }
+
+
+    #container{
+      display: flex;
+      margin-top: 10px;
+    }
+
+    #sidebar{
+      /* border: 1px solid red; */
+      width: 20%;
+      /* height: 400px; */
+      padding: 30px;
+    }
+
+    #sidebar>h3{
+      border: 1px solid green;
+    }
+
+    #sidebar>h3:hover{
+      cursor: pointer;
+    }
+
+    #results>.news{
+      height: 500px;
+      border: 1px solid blue;
+    }
+
+    #results>.news:hover{
+      cursor: pointer;
+    }
+
+    #results>.news>img{
+      width: 100%;
+      height: 70%;
+    }
+
+  
+  </style>
+  <body>
+    <!-- Give Navbar with id "navbar"  -->
+    <!-- Navbar will have input with id search_input and a link to home page i.e. index.html -->
+    <!-- Sidebar will have id "sidebar"  -->
+    <!-- Give link to top headlines of countries in sidebar with id as their country codes 
+    india :- in
+    china :- ch
+    usa :- us
+    uk : uk
+    Newzeland :- nz -->
+
+    <!-- Append results inside div with id "results"  -->
+    <!-- News divs will have class "news"  -->
+      <div id="navbar">
+        
+      </div>
+
+      <div id="container">
+        <div id="sidebar">
+          <h3 id="in">India</h3>
+          <h3 id="ch">China</h3>
+          <h3 id="us">US</h3>
+          <h3 id="uk">UK</h3>
+          <h3 id="nz">Newzeland</h3>
+        </div>
+          
+  
+       <div id="results">
+        
+       </div> 
+      </div>
+  </body>
+</html>
+
+<script src="scripts/index.js" type="module"></script>

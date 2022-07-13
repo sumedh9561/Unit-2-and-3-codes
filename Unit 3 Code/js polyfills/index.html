@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+
+// 1. Create your custom map method (myMap), which will work exactly similar to Array.map().
+
+    const sample = [1,2,3];
+const mapResult = sample.map(function(val, index, array) {
+    console.log('val :', val, 'index :', index, 'array :', array);
+    return (val * 2);
+});
+
+
+// 2. Create your custom forEach method (myForEach), which will work exactly similar to Array.forEach().
+
+
+const array = ['a', 'b', 'c'];
+
+array.forEach(element => console.log(element));
+
+
+
+// 3. Create your custom filter method (myFilter), which will work exactly similar to Array.filter().
+
+
+function inrange(value) {
+    if (typeof value !== 'number') {
+        return false;
+    }
+    return value >= this.lower && value <= this.upper;
+}
+
+let data = [1, 2, "3", 4, 5, 'JavaScript filter', undefined, 'example'];
+
+let range = {
+    lower: 1,
+    upper: 10
+};
+
+let numberinrange = data.filter(inrange, range);
+
+console.log(numberinrange); 
+
+
+// 4. Create your custom reduce method (myReduce), which will work exactly similar to Array.reduce().
+
+
+var arr=[5,21,61,8,1];
+var result = arr.reduce((acc, item) => acc+item);
+console.log(result);
+
+</script>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            /* background-image: url("https://i.pinimg.com/originals/18/03/0b/18030b06cb33fcedf337bf6dc9b9473f.gif"); */
+            background-image: url(https://i.gifer.com/7bto.gif);
+            height: 100vh;
+
+  /* Center and scale the image nicely */
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        input{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 35px;
+            width: 290px;
+            background-color: black;
+            color:black;
+            border-radius: 10px;
+            margin-top: 10%;
+            font-size: bold;
+        }
+        #results{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            
+        }
+        #query{
+          display: block;
+        margin-right: auto;
+         margin-left: auto;
+         height: 40px;
+         width: 400px;
+         color: white;
+         background-color: rgb(37, 71, 71);
+         border-radius: 10px;
+         border: none;
+      } 
+      p{
+          text-align: center;
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          font-size: 20px;
+          font-weight: bold;
+          color:white;
+      }
+      #results{
+        display: block;
+        margin-right: auto;
+         margin-left: auto;
+         margin-top: 10px;
+        height: 200px;
+        width: 400px;
+        /* border: 1px solid red; */
+        border-radius: 20px;
+         overflow: scroll; 
+        text-align: center;
+        background-color: rgb(156, 153, 153);
+        color:white;
+        font-size: 20px;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="pinClipart.com_number-bond-clipart_562491.png"alt=""/>
+        <input type="text" id="query" oninput="debouncing(main,1000)"/>
+        <div id="results"></div>  
+
+    </div>
+    
+</body>
+</html>
+<script src="index.js"></script>

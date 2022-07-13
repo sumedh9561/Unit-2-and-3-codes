@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Amount</title>
+
+    <style>
+        body{
+            /* background-color: purple; */
+            background-image: url(https://cdn3.ticketnew.com/partners/img/V_Max/background.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+           background-size: cover;
+          position: relative;
+          }
+        
+      #navbar{
+        display: grid;
+        margin-left: 580px;
+        color: orange;
+        
+      }
+      
+
+      #add_to_wallet{
+        color: white;
+        background-color:indianred;
+        border: none;
+        height: 30px;
+        border-radius: 10px;
+        
+        
+      }
+
+      #add_to_wallet:hover{
+        cursor: pointer;
+        color: blue;
+        background: white;
+        border: blue 1px solid;
+      }
+
+      #book_movies{
+        color: white;
+        background-color: darkgoldenrod;
+        border: none;
+        height: 30px;
+        width: 350px;
+        border-radius: 10px;
+      }
+
+      #book_movies:hover{
+        cursor: pointer;
+        color: blue;
+        background: white;
+        border: blue 1px solid;
+      }
+      #add-money{
+        display: grid;
+        width: 350px;
+        row-gap: 20px;
+        margin-left: 550px;
+      }
+      #amount{
+        height: 30px;
+        background-color: floralwhite;
+        border: none;
+        
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <div id="navbar">
+      <h1>Add Money to wallet</h1>
+      
+      <h1 id="wallet"></h1>
+    </div>
+    <div id="add-money">
+
+      <input type="number" id="amount" placeholder="Enter Amount Rs" >
+      <button  onclick="addToWallet()" id="add_to_wallet">add to wallet</button>
+     <a href="movies.html"><button id="book_movies">Book Movies</button></a>
+
+    </div>
+  </body>
+</html>
+
+
+<script>
+    let storedAmount = JSON.parse(localStorage.getItem("amount"))||"";
+
+    // total Checking;
+    
+    let inputAmount = document.getElementById("amount").value;
+    let total = Number(storedAmount) + Number(inputAmount);
+
+ // console.log(total)
+
+    console.log(typeof(total))
+
+    let walledTag = document.getElementById("wallet");
+
+    walledTag.innerText = storedAmount;
+
+    let addToWallet = ()=>{
+    let inputAmount=document.getElementById("amount").value;
+    
+
+    let total=Number(storedAmount) + Number(inputAmount);
+        console.log(total)
+
+        
+    localStorage.setItem("amount", JSON.stringify(total));
+        window.location.reload();
+
+   }
+
+</script>

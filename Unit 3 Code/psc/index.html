@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            text-align: center;
+            font-size: 50px;
+            text-decoration: underline;
+            color: #9e2b87;
+            font-family: monospace;
+            text-transform: uppercase;
+        }
+        div{
+            display: flex;
+            justify-content: space-between;
+        }
+        form{
+            margin: 0 auto;
+            margin-top: 30px;
+            width: 30%;
+            padding: 30px;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+        label{
+            font-size: 30px;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="url"]
+        {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+        input[type="submit"] {
+            background-color: #2b9e3a;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #050505;
+        }
+        .product_image{
+            height: 100px;
+            width: 100px;
+        }
+        body{
+            background-color: antiquewhite;
+        }
+        a{
+            color: #2b9e3a;
+            
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button>
+            <a href="inventory.html">show_products</a>
+        </button>
+    </div>
+    <!-- <h1> Unit-03 First Evaluation 23 June</h1> -->
+    <div>
+        <form id="product_form" onsubmit="storeData(event)">
+            <label for="">Brand</label>
+            <br>
+            <input  id="product_brand" type="text"  placeholder="Enter Your Favorite Brand Name">
+            <br>
+            <label for="">Name</label>
+            <br>
+            <input  id="product_name" type="text" placeholder="Enter Products Name">
+            <br>
+            <label for="">Price</label>
+            <br>
+            <input  id="product_price" type="number" placeholder="Enter price Rs">
+            <br>
+            <label for="">Image</label>
+            <br>
+            <input  id="product_image"  type="url" placeholder="Products Images">
+            <br>
+            <input  id="show_products" type="submit">
+    
+        </form>
+    </div>
+    </body>
+    </html>
+
+<script>
+        function Products(b,n,p,i){
+            this.brand=b;
+            this.name=n;
+            this.price=p;
+            this.image=i;
+        }
+
+        function storeData(e){
+            e.preventDefault();
+           let form= document.getElementById("product_form");
+           let brand=form.product_brand.value;
+           let name=form.product_name.value;
+           let price=form.product_price.value;
+           let image=form.product_image.value;
+
+           let s1=new Products(brand,name,price,image)
+
+
+           //console.log(s1)
+
+           let data=JSON.parse(localStorage.getItem("product"))||[]
+
+           data.push(s1)
+
+           localStorage.setItem("product",JSON.stringify(data));
+
+           console.log(s1)
+        }
+</script>

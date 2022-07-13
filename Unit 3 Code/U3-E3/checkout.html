@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+
+    <style>
+         body{
+            
+            background-image: url(https://cdn3.ticketnew.com/partners/img/V_Max/background.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+           background-size: cover;
+          position: relative;
+          }
+      #user-detail{
+
+        margin-bottom: 25px;
+        display: grid;
+        row-gap: 10px;
+        width: 350px;
+        margin-left: 550px;
+
+      }
+
+      #navbar{
+        display: flex;
+        justify-content: space-between;
+        color: orange;
+      }
+
+
+      #confirm{
+        color: white;
+        background-color: darkgoldenrod;;
+        border: none;
+        height: 30px;
+        border-radius: 10px;
+      }
+
+      #confirm:hover{
+        cursor: pointer;
+        color: blue;
+        background: white;
+        border: blue 1px solid;
+      }
+      #user_name{
+        height: 30px;
+        background-color: floralwhite;
+        border: none;
+      }
+      #number_of_seats{
+        height: 30px;
+        background-color: floralwhite;
+        border: none;
+      }
+      #movie{
+        margin-left: 50px;
+        text-align: center;
+        
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <div id="navbar">
+      <h1>Checkout | Cost: 100/seat</h1>
+      
+      <h1 id="wallet"></h1>
+    </div>
+    <div id="user-detail">
+      
+      <input type="text" id="user_name" placeholder="Enter Movie Name" autofocus>
+      <input type="number" id="number_of_seats" placeholder="Number Of Seats">
+      <button onclick="submit()" id="confirm">Confirm Booking</button>
+    </div>
+
+    <div id="movie"></div>
+  </body>
+</html>
+
+<script>
+    let storedAmount = JSON.parse(localStorage.getItem("amount"));
+    let walledTag = document.getElementById("wallet");
+
+    walledTag.innerText = storedAmount;
+
+    let moviesStorage = JSON.parse(localStorage.getItem("movie"));
+
+
+    moviesStorage.map(({ Poster, Title }) => {
+
+        let movieDiv = document.getElementById("movie");
+
+        let div = document.createElement("div");
+        
+
+        let img = document.createElement("img");
+        img.src = Poster;
+
+        let h1 = document.createElement("h1");
+        h1.innerText = Title;
+        h1.style.color="white"
+
+        div.append(img, h1);
+        movieDiv.append(div);
+    })
+
+
+    let submit = () => {
+        let walledTag = document.getElementById("wallet");
+        // walledTag.innerText=storedAmount;
+
+        let inputSeats = document.getElementById("number_of_seats").value;
+
+        let ticketCost = inputSeats * 100;
+
+
+        let nameTag = document.getElementById("user_name").value;
+
+        console.log(nameTag);
+        console.log(storedAmount);
+
+
+
+        if (ticketCost == 0 || nameTag == "") {
+
+            alert("enter required fields");
+
+        }
+        else {
+            if (storedAmount >= ticketCost) {
+
+                alert("Booking successful!");
+                let Balance = storedAmount - ticketCost;
+                localStorage.setItem("amount", JSON.parse(Balance));
+                walledTag.innerText = Balance;
+                window.location.reload();
+            }
+            else {
+                alert("Insufficient Balance!");
+            }
+        }
+
+    }
+
+</script>

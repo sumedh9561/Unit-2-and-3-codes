@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #products_data{
+          /* border: 1px solid red; */
+            height: auto;
+            width: 100%;
+            display: flex;
+        
+        }
+        #products_data>div{
+            margin-top: 2%;
+            width: 25%;
+            height: auto;
+            /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+             border: 1px solid rebeccapurple; */
+             box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+             text-align: center;
+             
+            
+        }
+        #products_data>div>img{
+            width: 100%;
+        }
+        body{
+            background-color: antiquewhite;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <button id="add_product"> <a href="index.html">Add product</a></button>
+    </div>
+
+    <div id="products_data">
+
+    </div>
+</body>
+</html>
+
+<script>
+ var prodData=JSON.parse(localStorage.getItem ("product")) || []
+ 
+
+// var prodData=[
+//     {
+//         image:"https://img.freepik.com/free-photo/pair-trainers_144627-3800.jpg?size=338&ext=jpg&uid=R71721258&ga=GA1.2.851508462.1653237341",
+//         brand: "Nike",
+//         name: "shoes",
+//         price: 501
+//     },
+//     {
+//         image:"https://img.freepik.com/free-photo/pair-trainers_144627-3800.jpg?size=338&ext=jpg&uid=R71721258&ga=GA1.2.851508462.1653237341",
+//         brand: "Nike",
+//         name: "shoes",
+//         price: 501
+//     },
+//     {
+//         image:"https://img.freepik.com/free-photo/pair-trainers_144627-3800.jpg?size=338&ext=jpg&uid=R71721258&ga=GA1.2.851508462.1653237341",
+//         brand: "Nike",
+//         name: "shoes",
+//         price: 501
+//     },
+//     {
+//         image:"https://img.freepik.com/free-photo/pair-trainers_144627-3800.jpg?size=338&ext=jpg&uid=R71721258&ga=GA1.2.851508462.1653237341",
+//         brand: "Nike",
+//         name: "shoes",
+//         price: 501
+//     }
+// ];
+
+prodData.map(function(ele, index){
+    let div=document.createElement("div");
+
+    let brand=document.createElement("p")
+    brand.innerText=ele.brand;
+
+    let name=document.createElement("p")
+    name.innerText=ele.name;
+    name.style.color="orange"
+
+    let price=document.createElement("p")
+    price.innerText=ele.price;
+    price.style.color="green"
+
+    let image=document.createElement("img")
+    image.src=ele.image;
+
+    let btn=document.createElement("button")
+    btn.innerText="Remove";
+    btn.style.backgroundColor="red",
+    btn.style.color="white",
+    btn.style.border="none"
+
+    btn.addEventListener("click", function(){
+        removedata(ele, index);
+    })
+
+    div.append(image,name, brand, price,btn)
+
+    document.querySelector("#products_data").append(div)
+
+})
+
+function removedata(ele,index){
+    prodData.splice(index,1)
+    localStorage.setItem("product", JSON.stringify(prodData))
+    window.location.reload();
+
+}
+
+</script>
+
+
+
+
+    

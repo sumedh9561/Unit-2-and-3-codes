@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            background-color: rgb(242, 14, 6);
+            color: rgb(9, 7, 7);
+            text-align: center;
+            padding: 5px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        }
+    div{
+        /* margin-top: 20%; */
+        height:300px;
+        width:250px;
+        /* border:solid 1px white; */
+       
+        overflow:scroll;
+        margin-left: 30%;
+        background-color: rgb(230, 227, 227);
+
+    }
+    body{
+        background-color: rgb(35, 34, 34);
+        color: rgb(138, 134, 134)
+    }
+    input{
+        width:231px;
+
+        padding: 10px;
+        margin-top: 5%;
+        margin-left: 30%;
+        background-color:rgb(235, 234, 230);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+    button{
+        padding: 10px;
+        border-radius: 3px;
+        background-color: rgb(250, 10, 10);
+        color: white;
+        font-family: sans-serif;
+        border-radius: 20px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+</style>
+</head>
+<body>
+    <h1>HOTSTAR</h1>
+    <input  oninput=" debounce(myfunction,1000)" type="text" id="mv">
+    <button>Search Movie</button>
+    <div onclick="showdetails()">
+
+    </div>
+</body>
+</html>
+<script>
+    let id;
+     async function movies(q){
+        var url=`http://www.omdbapi.com/?s=${q}&apikey=adc7c134`
+        var res= await fetch(url);
+        var data=await res.json()
+        return (data.Search)
+     }
+     function append(m){
+        
+         
+             var d= document.querySelector("div")
+             d.innerHTML=null
+             if(m==undefined){
+                 return false
+             }
+             else{
+                 m.forEach(function(el){
+                    var movie=document.createElement("h4")
+                     movie.innerText=el.Title
+                     movie.style.color="orange"
+
+                      d.append(movie)
+
+                 })
+           
+
+             }
+     }
+     async function myfunction(){
+        
+       var a= document.querySelector("#mv").value;
+    //    console.log(a)
+       var res= await movies(a)
+       var dat= await res
+       console.log(dat)
+       
+       append(dat)
+        
+
+    }
+    function debounce(func,delay){
+        if(id){
+            clearTimeout(id);
+        }
+        
+            id=setTimeout(function(){
+                func();
+            },delay)
+        
+    }
+    async function showdetails(){
+        var a= document.querySelector("#mv").value;
+    //    console.log(a)
+       var res= await movies(a)
+       var dat= await res
+        for(var i=0;i<dat.length;i++){
+             onclick=console.log(dat[i])
+                
+            }
+
+        }
+    
+   
+</script>

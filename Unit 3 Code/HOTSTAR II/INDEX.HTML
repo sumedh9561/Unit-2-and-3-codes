@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #sam01,img{
+            /* border: 1px solid red; */
+            background-color: rgb(239, 6, 6);
+            box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+             /* height: 40px;
+             width: 250px; */
+        }
+        h1{
+            /* margin-left: 600px; */
+            font-family: Bebas Neue;
+        }
+          body{
+            background-color:rgb(4, 4, 4);
+           
+        }
+        input{
+            width: 250px;
+            height: 30px;
+            background-color: gainsboro;
+            border: none;
+            border-radius: 10px;
+            margin-left: 600px;
+            box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+            margin-top: 20px;
+            text-align: center;
+            
+
+        }
+        #movies{
+            height: 200px;
+            width:256px;
+            border-radius: none;
+            overflow: scroll;
+            background-color: rgb(188, 184, 184);
+            margin-left: 600px;
+            margin-top: 10px;
+            
+        }
+        #box{
+            width:70%;
+            margin: auto;
+             display: grid; 
+             
+            
+            
+        }
+        h1{
+            font-size: 50px;
+            color: rgb(248, 245, 245);
+            margin-bottom: 6px;
+            display: flex;
+            
+        }
+        #sam1{
+            background-color: rgb(9, 8, 8);
+            box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div id="sam01">
+        <h1>NETFLIX</h1>
+        <!-- <img src="https://cdn.iphoneincanada.ca/wp-content/uploads/2021/11/Netflix.jpeg" alt=""> -->
+
+    </div> 
+        <div id="sam1">
+    <input oninput="deboucing(main,1000)" type="text" name="" id="query" placeholder="Search Your Movie">
+
+    <div id="movies"></div>
+</div>
+
+    <div id="box"></div>
+
+     
+</body>
+</html>
+<script>
+    let id;
+    let y=document.getElementById('movies')
+    let box=document.getElementById('box')
+    async function getmovies(query){
+        
+        
+        try{
+            let url=`https://omdbapi.com/?s=${query}&page=1&apikey=13ae11a4`;
+            let res = await fetch(url)
+            let data = await res.json();
+            return data.Search;
+            
+
+        }
+        catch(error){
+            console.log('error',error)
+        }
+    }
+    function appendM(movies){
+        y.innerText=null;
+        box.innerText=null;
+
+        if(movies===undefined)
+        {
+            return false;
+        }
+        movies.forEach(function(el){
+
+            let p= document.createElement("p")
+            p.innerText=el.Title
+            p.style.color="green"
+
+            y.append(p)
+
+            let image=document.createElement("img")
+            image.src=el.Poster;
+            
+
+
+            let name=document.createElement("h2")
+            name.innerText=el.Title;
+            name.style.color="orange"
+            console.log(name)
+
+            let type=document.createElement("h3");
+            type.innerText="Type :"+el.Type;
+            type.style.color="green"
+
+            let year=document.createElement("h3")
+            year.innerText="Year :"+el.Year;
+            year.style.color="red"
+
+            let imdb=document.createElement("p")
+            imdb.innerText="Imdb :"+el.imdbID;
+            imdb.style.color="yellow"
+            y.append(p);
+
+            box.append(image,name,type,year,imdb)
+        });
+    }
+
+    async function main(){
+        let query = document.getElementById("query").value;
+        let x = getmovies(query)
+        let data = await x;
+        console.log(data)
+        appendM(data)
+    }
+
+    function deboucing(func,delay){
+        if(id)
+        {
+            clearTimeout(id)
+        }
+        id=setTimeout(function(){
+            func();
+        },delay)
+    }
+</script>

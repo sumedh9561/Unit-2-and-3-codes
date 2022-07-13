@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #sam{
+            text-align: center;
+            color: red;
+        }
+        #sam1{
+            color: green;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="sam">ES 6 II</h1>
+    <h1 id="sam1">Custom Array</h1>
+
+</body>
+
+</html>
+<script>
+
+function MyArrayBOSS() {
+  
+    Object.defineProperty(this, "length", {
+        value: 0,
+        writable: true,
+        enumerable: false,
+    });
+
+    this.length = arguments.length;
+
+    for (let i = 0; i < this.length; i++) {
+        this[i] = arguments[i]
+    }
+
+}
+
+// push  function 
+MyArrayBOSS.prototype.push = function (value) {
+    var index = this.length;
+
+    this[index] = value;
+    this.length++;
+    // len
+}
+
+// pop  function 
+MyArrayBOSS.prototype.pop = function () {
+    var index = this.length - 1;
+
+    delete this[index]
+    this.length--;
+}
+
+// top()  function - it will return the element at the last index
+MyArrayBOSS.prototype.top = function () {
+    var index = this.length - 1;
+
+    return this[index]
+}
+
+// print()  function - it will print the elements in a single line (e.g., [1,2,3,4])
+MyArrayBOSS.prototype.print = function () {
+
+    var arr = [];
+    for (let i = 0; i < this.length; i++) {
+        var elem = this[i];
+        arr.push(elem)
+    }
+    console.log(arr);
+}
+
+//printReverse() // it will print the elements in a single line in reverse order.
+MyArrayBOSS.prototype.printReverse = function () {
+    var arr = [];
+    for (let i = this.length - 1; i >= 0; i--) {
+        var elem = this[i];
+        arr.push(elem);
+    }
+    console.log(arr)
+}
+
+//size() // It will return the length of the stack 
+MyArrayBOSS.prototype.size = function () {
+
+    return this.length;
+}
+
+
+var ARRAY = new MyArrayBOSS(1, 2, 3, 4, 5);
+
+console.log('ARRAY:', Object.values(ARRAY))
+
+ARRAY.push(8)
+console.log('After Push :', Object.values(ARRAY))
+
+ARRAY.pop();
+console.log('After Pop :', Object.values(ARRAY))
+
+console.log("Top element:", ARRAY.top())
+
+ARRAY.print();
+
+ARRAY.printReverse()
+
+console.log("Length of an Array", ARRAY.size())
+
+
+
+
+
+//WE Problem :-
+
+//stack :-
+//length,push,pop,peek
+
+// class Stack {
+//     constructor() {
+//         this.length = 0;
+//         this.stack = [];
+//     }
+//     push(el) {
+//         this.stack[this.length] = el;
+//         this.length++
+//     }
+//     pop() {
+//         this.stack.pop();
+//         this.length--;
+//     }
+//     peek() {
+//         return this.stack[this.length - 1];
+//     }
+// }
+
+// let s1 = new Stack();
+// s1.push(1)
+// s1.push(2)
+// s1.push(10)
+// s1.pop();
+// console.log(s1.peek());
+// console.log(s1);
+
+</script>
